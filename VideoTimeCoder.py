@@ -1,4 +1,5 @@
 import ffmpeg
+import settings
 
 def add_timecode(input_path, output_path, fps,size):
     stream = ffmpeg.input(input_path)

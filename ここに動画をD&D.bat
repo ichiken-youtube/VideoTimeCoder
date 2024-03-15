@@ -7,9 +7,10 @@ cd /d "%~dp0"
 :: 引数（ドラッグ&ドロップされたファイルのパス）をチェック
 if "%~1"=="" (
     echo File not specified.
-    python translate_srt.py
+    pause
+    exit /b 1
 ) else (
-    python translate_srt.py "%~1"
+    python VideoTimeCoder.py "%~1"
 )
 
 if %ERRORLEVEL% neq 0 pause
