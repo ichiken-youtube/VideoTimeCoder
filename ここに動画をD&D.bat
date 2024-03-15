@@ -1,10 +1,8 @@
 @echo off
 setlocal enabledelayedexpansion
 
-:: バッチファイルのあるディレクトリに作業ディレクトリを変更
 cd /d "%~dp0"
 
-:: 引数（ドラッグ&ドロップされたファイルのパス）をチェック
 if "%~1"=="" (
     echo File not specified.
     pause
