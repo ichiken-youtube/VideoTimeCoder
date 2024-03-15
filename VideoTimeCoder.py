@@ -1,5 +1,6 @@
 import ffmpeg
 import settings
+import sys
 
 def add_timecode(input_path, output_path, fps,size):
     stream = ffmpeg.input(input_path)
@@ -14,8 +15,10 @@ def add_timecode(input_path, output_path, fps,size):
     )
 
 if __name__ == "__main__":
-    input_path = "C0032.MP4"    # 入力動画ファイル名
-    output_path = "output_ff.mp4"  # 出力動画ファイル名
-    size = (1280, 720)  # 出力する動画のサイズ（幅、高さ）
-    fps = 29.97  # フレームレート
-    add_timecode(input_path, output_path, fps, size)
+    if len(sys.argv) < 2:
+        print('ファイルが指定されていません。このファイルを直接起動しないでください。')
+        exit(1)
+
+    input_path = sys.argv[1]    # 入力動画ファイル名
+    output_path = "output.mp4"  # 出力動画ファイル名
+    add_timecode(input_path, output_path, fps=settings.FPS, size=settings.SIZE)
