@@ -8,7 +8,7 @@
 winget install ffmpeg
 pip install ffmpeg-python
 ```
-を実行し、設定ファイルsettings.pyを作成してください。  
+を実行したのち、設定ファイルsettings.pyを作成してください。  
 
 ## 設定ファイル
 settings.pyに以下の内容が書き込まれている必要があります。
