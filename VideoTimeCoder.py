@@ -29,7 +29,7 @@ def add_timecode(input_path, output_path, fps,size,videoBitrate):
         stream
         .filter('scale', size[0], size[1])
         .drawtext(timecode='00:00:00:00',timecode_rate=fps,fontfile="C:/Windows/Fonts/msgothic.ttc",fontsize=135, y=100, x=size[1]-500,fontcolor='white',alpha=0.8,borderw=10,bordercolor='#404040')
-        .drawtext(text='文字起こし用\n　投稿禁止',fontfile="C:/Windows/Fonts/msgothic.ttc",fontsize=135, y=280, x=size[1]-500,fontcolor='white',alpha=0.8,borderw=10,bordercolor='#404040')
+        .drawtext(text='文字起こし用　投稿禁止',fontfile="C:/Windows/Fonts/msgothic.ttc",fontsize=70, y=280, x=size[1]-500,fontcolor='white',alpha=0.8,borderw=10,bordercolor='#404040')
         .output(audio_stream,output_path,**{'b:v': str(videoBitrate)+'k'},**{'b:a': str(AUDIO_BITRATE)+'k'})# crfは標準20くらい。大きいほど画質が悪い。
         .run()  
     )
