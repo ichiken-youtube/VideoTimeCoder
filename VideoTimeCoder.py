@@ -35,7 +35,7 @@ def getTextWidth(font_size,text):
 
 
 def add_timecode(input_path, output_path, fps,size,videoBitrate):
-    warn_text='文字起こし用　投稿禁止'
+    warn_text=settings.TEXT
     warn_fontSize=70
     tc_text = '00:00:00:00'
     tc_fontSize = 135
