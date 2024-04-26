@@ -22,6 +22,18 @@ def calc_bitrate(input_path):
     print('VideoBitrate : '+str(videoBitrate)+'[kbps]')
     return videoBitrate
 
+def getTextWidth(font_size,text):
+    w=0
+    for char in text:
+        if ord(char) <= 0x7f:
+            # ASCII (半角)
+            w += font_size/2
+        else:
+            # 非ASCII（全角）
+            w += font_size
+    return w
+
+
 def add_timecode(input_path, output_path, fps,size,videoBitrate):
     stream = ffmpeg.input(input_path)
     audio_stream = stream.audio
