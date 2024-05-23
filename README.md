@@ -19,8 +19,10 @@ FILESIZE_LIMIT = 95 #動画のファイルサイズ上限[MB]
 SIZE = (1280, 720) #動画の画面サイズ
 FPS = 29.97 #動画のフレームレート
 TIMECODE_SIZE = 135 #タイムコードのフォントサイズ
+TIMECODE_Y = 100 #タイムコードのY座標(Xはセンタリング)
 TEXT = "YOUR EYES ONLY!! DO NOT POST!!" #タイムコードの他に任意の文字列を入れられます。
 TEXT_SIZE = 70 #テキストのフォントサイズ
+TEXT_Y = 280 #テキストのY座標(Xはセンタリング)
 OUTPUT_FILENAME = "output.mp4" #出力ファイル名
 ```
 
