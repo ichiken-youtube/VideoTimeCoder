@@ -7,12 +7,14 @@ AUDIO_BITRATE = 320
 #標準動画ビットレート[kbps]
 VIDEO_BITRATE_LIMIT = 3000
 
+#デフォルト設定
 FILESIZE_LIMIT = 95 
 FRAME_SIZE = (1280, 720) 
 FPS = 29.97 
 TIMECODE_SIZE = 135  
 TEXT = "" 
-TEXT_SIZE = 70 
+TEXT_SIZE = 70
+OUTPUT_FILENAME = "output.mp4"
 
 def calc_bitrate(input_path):
     meta = ffmpeg.probe(input_path)
@@ -98,8 +100,14 @@ if __name__ == "__main__":
     except:
         print('TEXT_SIZE='+str(TEXT_SIZE)+'(Default)')
 
+    try:
+        OUTPUT_FILENAME = settings.OUTPUT_FILENAME
+        print('OUTPUT_FILENAME='+str(OUTPUT_FILENAME))
+    except:
+        print('OUTPUT_FILENAME='+str(OUTPUT_FILENAME)+'(Default)')
+
     input_path = sys.argv[1]    # 入力動画ファイル名
-    output_path = "output.mp4"  # 出力動画ファイル名
+    output_path = "./"+OUTPUT_FILENAME  # 出力動画ファイル名
     bitrate = calc_bitrate(input_path)
 
     add_timecode(input_path, output_path, fps=FPS, size=FRAME_SIZE, videoBitrate=bitrate)

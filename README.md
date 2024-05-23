@@ -20,6 +20,7 @@ FPS = 29.97 #動画のフレームレート
 TIMECODE_SIZE = 135 #タイムコードのフォントサイズ
 TEXT = "YOUR EYES ONLY!! DO NOT POST!!" #タイムコードの他に任意の文字列を入れられます。
 TEXT_SIZE = 70 #テキストのフォントサイズ
+OUTPUT_FILENAME = "output.mp4"
 ```
 
 # 実行
