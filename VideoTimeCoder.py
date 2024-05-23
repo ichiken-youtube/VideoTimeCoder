@@ -7,6 +7,13 @@ AUDIO_BITRATE = 320
 #標準動画ビットレート[kbps]
 VIDEO_BITRATE_LIMIT = 3000
 
+FILESIZE_LIMIT = 95 
+FRAME_SIZE = (1280, 720) 
+FPS = 29.97 
+TIMECODE_SIZE = 135  
+TEXT = "" 
+TEXT_SIZE = 70 
+
 def calc_bitrate(input_path):
     meta = ffmpeg.probe(input_path)
     duration = float(meta['format']['duration'])
@@ -35,10 +42,10 @@ def getTextWidth(font_size,text):
 
 
 def add_timecode(input_path, output_path, fps,size,videoBitrate):
-    warn_text=settings.TEXT
-    warn_fontSize=settings.TEXT_SIZE
+    warn_text=TEXT
+    warn_fontSize=TEXT_SIZE
     tc_text = '00:00:00:00'
-    tc_fontSize = settings.TIMECODE_SIZE
+    tc_fontSize = TIMECODE_SIZE
     stream = ffmpeg.input(input_path)
     audio_stream = stream.audio
     (
@@ -55,8 +62,44 @@ if __name__ == "__main__":
         print('ファイルが指定されていません。このファイルを直接起動しないでください。')
         exit(1)
 
+    try:
+        FILESIZE_LIMIT = settings.FILESIZE_LIMIT
+        print('FILESIZE_LIMIT='+str(FILESIZE_LIMIT))
+    except:
+        print('FILESIZE_LIMIT='+str(FILESIZE_LIMIT)+'(Default)')
+
+    try:
+        FRAME_SIZE = settings.FRAME_SIZE
+        print('FRAME_SIZE='+str(FRAME_SIZE))
+    except:
+        print('FRAME_SIZE='+str(FRAME_SIZE)+'(Default)')
+
+    try:
+        FPS = settings.FPS
+        print('FPS='+str(FPS))
+    except:
+        print('FPS='+str(FPS)+'(Default)')
+
+    try:
+        TIMECODE_SIZE = settings.TIMECODE_SIZE
+        print('TIMECODE_SIZE='+str(TIMECODE_SIZE))
+    except:
+        print('TIMECODE_SIZE='+str(TIMECODE_SIZE)+'(Default)')
+
+    try:
+        TEXT = settings.TEXT
+        print('TEXT='+str(TEXT))
+    except:
+        print('TEXT=""')
+
+    try:
+        TEXT_SIZE = settings.TEXT_SIZE
+        print('TEXT_SIZE='+str(TEXT_SIZE))
+    except:
+        print('TEXT_SIZE='+str(TEXT_SIZE)+'(Default)')
+
     input_path = sys.argv[1]    # 入力動画ファイル名
     output_path = "output.mp4"  # 出力動画ファイル名
     bitrate = calc_bitrate(input_path)
 
-    add_timecode(input_path, output_path, fps=settings.FPS, size=settings.FRAME_SIZE, videoBitrate=bitrate)
+    add_timecode(input_path, output_path, fps=FPS, size=FRAME_SIZE, videoBitrate=bitrate)
