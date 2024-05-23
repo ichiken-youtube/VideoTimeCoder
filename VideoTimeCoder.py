@@ -11,9 +11,11 @@ VIDEO_BITRATE_LIMIT = 3000
 FILESIZE_LIMIT = 95 
 FRAME_SIZE = (1280, 720) 
 FPS = 29.97 
-TIMECODE_SIZE = 135  
+TIMECODE_SIZE = 135
+TIMECODE_Y = 100
 TEXT = "" 
 TEXT_SIZE = 70
+TEXT_Y = 280
 OUTPUT_FILENAME = "output.mp4"
 
 def calc_bitrate(input_path):
@@ -53,8 +55,8 @@ def add_timecode(input_path, output_path, fps,size,videoBitrate):
     (
         stream
         .filter('scale', size[0], size[1])
-        .drawtext(timecode=tc_text,timecode_rate=fps,fontfile="C:/Windows/Fonts/msgothic.ttc",fontsize=tc_fontSize, y=100, x=(size[0]-getTextWidth(tc_fontSize,tc_text))/2,fontcolor='white',alpha=0.8,borderw=10,bordercolor='#404040')
-        .drawtext(text=warn_text,fontfile="C:/Windows/Fonts/msgothic.ttc",fontsize=warn_fontSize, y=280, x=(size[0]-getTextWidth(warn_fontSize,warn_text))/2,fontcolor='white',alpha=0.8,borderw=10,bordercolor='#404040')
+        .drawtext(timecode=tc_text,timecode_rate=fps,fontfile="C:/Windows/Fonts/msgothic.ttc",fontsize=tc_fontSize, y=TIMECODE_Y, x=(size[0]-getTextWidth(tc_fontSize,tc_text))/2,fontcolor='white',alpha=0.8,borderw=10,bordercolor='#404040')
+        .drawtext(text=warn_text,fontfile="C:/Windows/Fonts/msgothic.ttc",fontsize=warn_fontSize, y=TEXT_Y, x=(size[0]-getTextWidth(warn_fontSize,warn_text))/2,fontcolor='white',alpha=0.8,borderw=10,bordercolor='#404040')
         .output(audio_stream,output_path,**{'b:v': str(videoBitrate)+'k'},**{'b:a': str(AUDIO_BITRATE)+'k'})# crfは標準20くらい。大きいほど画質が悪い。
         .run()  
     )
@@ -87,6 +89,12 @@ if __name__ == "__main__":
         print('TIMECODE_SIZE='+str(TIMECODE_SIZE))
     except:
         print('TIMECODE_SIZE='+str(TIMECODE_SIZE)+'(Default)')
+    
+    try:
+        TIMECODE_Y = settings.TIMECODE_Y
+        print('TIMECODE_Y='+str(TIMECODE_Y))
+    except:
+        print('TIMECODE_Y='+str(TIMECODE_Y)+'(Default)')
 
     try:
         TEXT = settings.TEXT
@@ -99,6 +107,12 @@ if __name__ == "__main__":
         print('TEXT_SIZE='+str(TEXT_SIZE))
     except:
         print('TEXT_SIZE='+str(TEXT_SIZE)+'(Default)')
+
+    try:
+        TEXT_Y = settings.TEXT_Y
+        print('TEXT_Y='+str(TEXT_Y))
+    except:
+        print('TEXT_Y='+str(TEXT_Y)+'(Default)')
 
     try:
         OUTPUT_FILENAME = settings.OUTPUT_FILENAME
