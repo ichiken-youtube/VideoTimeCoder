@@ -36,9 +36,9 @@ def getTextWidth(font_size,text):
 
 def add_timecode(input_path, output_path, fps,size,videoBitrate):
     warn_text=settings.TEXT
-    warn_fontSize=70
+    warn_fontSize=settings.TEXT_SIZE
     tc_text = '00:00:00:00'
-    tc_fontSize = 135
+    tc_fontSize = settings.TIMECODE_SIZE
     stream = ffmpeg.input(input_path)
     audio_stream = stream.audio
     (
@@ -59,4 +59,4 @@ if __name__ == "__main__":
     output_path = "output.mp4"  # 出力動画ファイル名
     bitrate = calc_bitrate(input_path)
 
-    add_timecode(input_path, output_path, fps=settings.FPS, size=settings.SIZE, videoBitrate=bitrate)
+    add_timecode(input_path, output_path, fps=settings.FPS, size=settings.FRAME_SIZE, videoBitrate=bitrate)
