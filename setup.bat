@@ -1,7 +1,7 @@
 @echo off
 
 echo Installing ffmpeg...
-winget install ffmpeg
+winget install ffmpeg -v 6.1.1
 
 echo Installing Libraries...
 pip install ffmpeg-python

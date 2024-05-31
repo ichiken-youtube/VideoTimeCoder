@@ -3,9 +3,11 @@
 任意のサイズに収まるようにビットレートを自動で調整することができます。
 # セットアップ
 ```setup.bat```を実行してください。  
+なお、ffmpeg7.0.1で正常に実行できない不具合を確認しています。  
+暫定的に、setupスクリプトでインストールされるffmpegのバージョンを6.1.1に指定して対処しています。
 ## 手動で実行する場合は
 ```
-winget install ffmpeg
+winget install ffmpeg -v 6.1.1
 pip install ffmpeg-python
 ```
 を実行したのち、設定ファイルsettings.pyを作成してください。  
