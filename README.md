@@ -43,4 +43,4 @@ ffmpeg -version
 ```
 正常に実行できない場合は、環境変数Pathが正常に設定されていない可能性があります。  
 本プログラムは実行時に一時的な環境変数を設定しているため、Pathが通っていなくても実行できる場合がありますが、どうしても実行できない場合は、以下を環境変数Pathに追加してください。  
-```C:\Users\\{ユーザ名}\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-{バージョン}-full_build```
+```C:\Users\{ユーザ名}\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-{バージョン}-full_build\bin```
