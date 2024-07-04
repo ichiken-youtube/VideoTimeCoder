@@ -3,11 +3,10 @@
 任意のサイズに収まるようにビットレートを自動で調整することができます。
 # セットアップ
 ```setup.bat```を実行してください。  
-なお、ffmpeg7.0.1で正常に実行できない不具合を確認しています。  
-暫定的に、setupスクリプトでインストールされるffmpegのバージョンを6.1.1に指定して対処しています。
-## 手動で実行する場合は
+
+## 手動でセットアップを実行する場合は
 ```
-winget install ffmpeg -v 6.1.1
+winget install ffmpeg
 pip install ffmpeg-python
 ```
 を実行したのち、設定ファイルsettings.pyを作成してください。  
@@ -34,3 +33,14 @@ OUTPUT_FILENAME = "output.mp4" #出力ファイル名
 動画は基本的に3Mbpsでエンコードされます。  
 予想ファイルサイズが設定値を超える場合は、映像ビットレートを自動で下げて調整します。  
 音声のビットレートは320kbps固定です。
+
+# トラブルシューティング
+## ffmpegが見つからない
+ffmpegのインストール時に、wingetによるpathの設定に失敗する場合があります。
+ffmpegをインストールしたのち、コマンドプロンプトを再起動して以下のコマンドを実行し、ffmpepgが正常に実行できるか確認してください。
+```
+ffmpeg -version
+```
+正常に実行できない場合は、環境変数Pathが正常に設定されていない可能性があります。  
+本プログラムは実行時に一時的な環境変数を設定しているため、Pathが通っていなくても実行できる場合がありますが、どうしても実行できない場合は、以下を環境変数Pathに追加してください。  
+```C:\Users\\{ユーザ名}\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-7.0.1-full_build```
