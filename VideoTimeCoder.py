@@ -1,6 +1,7 @@
 import ffmpeg
 import settings
 import sys
+import os
 
 #音声ビットレート[kbps]
 AUDIO_BITRATE = 320
@@ -16,6 +17,7 @@ TIMECODE_Y = 100
 TEXT = "" 
 TEXT_SIZE = 70
 TEXT_Y = 280
+OUTPUT_DIRECTORY=""
 OUTPUT_FILENAME = "output.mp4"
 
 def calc_bitrate(input_path):
@@ -65,6 +67,8 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         print('ファイルが指定されていません。このファイルを直接起動しないでください。')
         exit(1)
+    
+    input_path = sys.argv[1]    # 入力動画ファイル名
 
     try:
         FILESIZE_LIMIT = settings.FILESIZE_LIMIT
@@ -115,13 +119,21 @@ if __name__ == "__main__":
         print('TEXT_Y='+str(TEXT_Y)+'(Default)')
 
     try:
+        OUTPUT_DIRECTORY = settings.OUTPUT_DIRECTORY
+        print('OUTPUT_DIRECTORY='+str(OUTPUT_DIRECTORY))
+    except:
+        OUTPUT_DIRECTORY = os.path.dirname(input_path)
+        print('OUTPUT_DIRECTORY='+str(OUTPUT_DIRECTORY))
+    
+    try:
         OUTPUT_FILENAME = settings.OUTPUT_FILENAME
         print('OUTPUT_FILENAME='+str(OUTPUT_FILENAME))
     except:
-        print('OUTPUT_FILENAME='+str(OUTPUT_FILENAME)+'(Default)')
+        orig_filename = os.path.basename(input_path)
+        OUTPUT_FILENAME = os.path.splitext(orig_filename)[0]+"_timecoded.mp4"
+        print('OUTPUT_FILENAME='+OUTPUT_FILENAME)
 
-    input_path = sys.argv[1]    # 入力動画ファイル名
-    output_path = "./"+OUTPUT_FILENAME  # 出力動画ファイル名
+    output_path = OUTPUT_DIRECTORY+"/"+OUTPUT_FILENAME  # 出力動画ファイル名
     bitrate = calc_bitrate(input_path)
 
     add_timecode(input_path, output_path, fps=FPS, size=FRAME_SIZE, videoBitrate=bitrate)
