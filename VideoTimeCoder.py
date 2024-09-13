@@ -23,7 +23,6 @@ OUTPUT_FILENAME = "output.mp4"
 def calc_bitrate(input_path):
     meta = ffmpeg.probe(input_path)
     duration = float(meta['format']['duration'])
-    print(type(duration))
     print('Duration : '+str(duration)+'[s]')
     audioSize = AUDIO_BITRATE/8.0*duration
     print('AudioSize : '+str(audioSize)+'[KB]')
@@ -135,5 +134,17 @@ if __name__ == "__main__":
 
     output_path = OUTPUT_DIRECTORY+"/"+OUTPUT_FILENAME  # 出力動画ファイル名
     bitrate = calc_bitrate(input_path)
+
+    if bitrate < 0:
+        print('目標サイズでのエンコードができません。')
+        exit(1)
+    elif bitrate < 250:
+        print('動画ビットレートが極端に低くなります。続行しますか？[Y/N]')
+        ans = input()
+        if 'Y' in ans or 'y' in ans:
+            pass
+        else:
+            exit(1)
+
 
     add_timecode(input_path, output_path, fps=FPS, size=FRAME_SIZE, videoBitrate=bitrate)
