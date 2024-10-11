@@ -19,6 +19,7 @@ settings.pyに以下の設定を書き込むことができます。
 FILESIZE_LIMIT = 95 #動画のファイルサイズ上限[MB]
 SIZE = (1280, 720) #動画の画面サイズ
 FPS = 29.97 #動画のフレームレート
+AUDIO_BITRATE = 128 #音声のビットレート[kbps]
 TIMECODE_SIZE = 135 #タイムコードのフォントサイズ
 TIMECODE_Y = 100 #タイムコードのY座標(Xはセンタリング)
 TEXT = "YOUR EYES ONLY!! DO NOT POST!!" #タイムコードの他に任意の文字列を入れられます。
