@@ -70,6 +70,12 @@ if __name__ == "__main__":
     input_path = sys.argv[1]    # 入力動画ファイル名
 
     try:
+        AUDIO_BITRATE = settings.AUDIO_BITRATE
+        print('AUDIO_BITRATE='+str(AUDIO_BITRATE))
+    except:
+        print('AUDIO_BITRATE='+str(AUDIO_BITRATE)+'(Default)')
+
+    try:
         FILESIZE_LIMIT = settings.FILESIZE_LIMIT
         print('FILESIZE_LIMIT='+str(FILESIZE_LIMIT))
     except:
