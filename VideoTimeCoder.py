@@ -1,7 +1,10 @@
 import ffmpeg
-import settings
 import sys
 import os
+try:
+    import settings
+except ImportError:
+    print("settings.py not found. Using default values.")
 
 #音声ビットレート[kbps]
 AUDIO_BITRATE = 320
@@ -26,7 +29,7 @@ def calc_bitrate(input_path):
     print('Duration : '+str(duration)+'[s]')
     audioSize = AUDIO_BITRATE/8.0*duration
     print('AudioSize : '+str(audioSize)+'[KB]')
-    videoSize = settings.FILESIZE_LIMIT*1024 - audioSize
+    videoSize = FILESIZE_LIMIT*1024 - audioSize
     print('VideoSize : '+str(videoSize)+'[kB]')
     videoBitrate = int(videoSize/duration*8)
     if videoBitrate > VIDEO_BITRATE_LIMIT:
