@@ -141,7 +141,7 @@ if __name__ == "__main__":
         OUTPUT_FILENAME = os.path.splitext(orig_filename)[0]+"_timecoded.mp4"
         print('OUTPUT_FILENAME='+OUTPUT_FILENAME)
 
-    output_path = OUTPUT_DIRECTORY+"/"+OUTPUT_FILENAME  # 出力動画ファイル名
+    output_path = os.path.join(OUTPUT_DIRECTORY, OUTPUT_FILENAME)  # 出力動画ファイル名
     bitrate = calc_bitrate(input_path)
 
     if bitrate < 0:
